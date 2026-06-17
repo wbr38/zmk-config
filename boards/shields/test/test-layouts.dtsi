@@ -4,38 +4,12 @@
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <physical_layouts.dtsi>
 
-// KScan
-/ {
-    kscan0: kscan0 {
-        compatible = "zmk,kscan-gpio-matrix";
-        diode-direction = "col2row";
-        wakeup-source;
-
-        row-gpios
-            = <&gpio0 17 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-            ;
-    };
-};
-
-// Matrix transform
-/ {
-    default_transform: keymap_transform0 {
-        compatible = "zmk,matrix-transform";
-        columns = <6>;
-        rows = <3>;
-        map = <
-            RC(0,0)
-        >;
-    };
-};
-
-// Physical layout
 / {
     default_layout: default_layout {
         compatible = "zmk,physical-layout";
         display-name = "Default Layout";
         transform = <&default_transform>;
-        kscan = <&kscan0>;
+        kscan = <&kscan>;
 
         // // Edit this to define the positions and sizes of the keys, or remove it
         // // if your keyboard will not support ZMK Studio.
@@ -46,12 +20,5 @@
         //     , <&key_physical_attrs 100 100    0  100       0     0     0>
         //     , <&key_physical_attrs 100 100  100  100       0     0     0>
         //     ;
-    };
-};
-
-/ {
-    chosen {
-        zmk,kscan = &kscan0;
-        zmk,physical-layout = &physical_layout0;
     };
 };
